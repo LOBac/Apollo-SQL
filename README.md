@@ -15,7 +15,7 @@ This CLI program written in Python allows you to connect to remote database to q
 ## Installation
 
 ```bash
-git clone https://github.com/olegbrz/Apollo-SQL.git
+git clone https://github.com/LOBac/LOBac-SQL.git
 ```
 
 ## Usage
