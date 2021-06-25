@@ -1,5 +1,4 @@
-![banner](images/apollo_banner.png)
-
+# LOBac SQL
 [![MIT license](https://img.shields.io/github/license/olegbrz/Apollo-SQL?color=teal)](https://lbesson.mit-license.org/) ![top language](https://img.shields.io/github/languages/top/olegbrz/Apollo-SQL) ![Code size](https://img.shields.io/github/languages/code-size/olegbrz/Apollo-SQL?color=green%20green) ![commit activity](https://img.shields.io/github/commit-activity/m/olegbrz/Apollo-SQL?color=green%20green) ![tag](https://img.shields.io/github/v/release/olegbrz/Apollo-SQL?include_prereleases) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3883946.svg)](https://doi.org/10.5281/zenodo.3883946)
 
 LOBac SQL is a lightweight MySQL database manager developed by a group of students from Málaga's University, forked from Apollo SQL.
