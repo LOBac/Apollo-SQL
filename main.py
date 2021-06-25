@@ -73,16 +73,8 @@ if __name__ == "__main__":
                 continue
             core.utils.show_queries(CURSOR)
 
-        # [3] Relate data function
+        # [3] Insert data function
         elif switch == 3:
-            if connected_to == '':
-                print('\n[!] Error, no connection was detected.')
-                input('\nPress ENTER to continue.')
-                continue
-            core.utils.relate_data(CURSOR)
-
-        # [4] Isert data function
-        elif switch == 4:
             if connected_to == '':
                 print('\n[!] Error, no connection was detected.')
                 input('\nPress ENTER to continue.')
@@ -90,7 +82,7 @@ if __name__ == "__main__":
             core.utils.insert(CURSOR)
 
         # [4] Settings option
-        elif switch == 5:
+        elif switch == 4:
             option = 1
             while option != 0:
                 option = core.ui.print_settings()

@@ -3,16 +3,16 @@ import core.config
 # CLI ELEMENTS
 
 banner = r'''==============================================================
-        ___                ____         _____ ____    __ 
-       /   |  ____  ____  / / /___     / ___// __ \  / /
-      / /| | / __ \/ __ \/ / / __ \    \__ \/ / / / / /  
-     / ___ |/ /_/ / /_/ / / / /_/ /   ___/ / /_/ / / /___
-    /_/  |_/ .___/\____/_/_/\____/   /____/\___\_\/_____/
-          /_/                                      v1.1.0
-     - A lightweight Oracle SQL database Python client -
 
-     (c) Lucía Arrabalí, Oleg Brezitskyy, Ainoa Fernández
-                Sergio Martín, Viktor Yosava'''
+        __    ____  ____                  _____ ____    __ 
+       / /   / __ \/ __ )____ ______     / ___// __ \  / / 
+      / /   / / / / __  / __ `/ ___/_____\__ \/ / / / / /  
+     / /___/ /_/ / /_/ / /_/ / /__/_____/__/ / /_/ / / /___
+    /_____/\____/_____/\__,_/\___/     /____/\___\_\/_____/
+                                                     v1.0
+     - A lightweight MySQL SQL database Python client -
+
+            (c) Lucía Arrabalí, Oleg Brezitskyy'''
 
 
 def menu(conn=''):
@@ -23,9 +23,8 @@ def menu(conn=''):
 
  [1] {'DIS' if conn else ''}CONNECT
  [2] QUERY DATA
- [3] RELATE DATA
- [4] INSERT DATA
- [5] SETTINGS
+ [3] INSERT DATA
+ [4] SETTINGS
 
  [0] EXIT
 
