@@ -1,24 +1,21 @@
 import core.ui
 import core.config
 import core.utils
-import cx_Oracle
+import mysql.connector
+
+CONNECTION = 0
+CURSOR = 0
 
 
 def connect_to_server():
     connection_settings = core.config.get_config()['connection']
 
-    # Load dsn info from config.ini
-    dsn_tns = cx_Oracle.makedsn(
-        host=connection_settings['host'],
-        port=connection_settings['port'],
-        sid=connection_settings['sid'])
-
-    conn = cx_Oracle.connect(
+    conn = mysql.connector.connect(
         user=connection_settings['user'],
         password=connection_settings['password'],
-        dsn=dsn_tns,
-        encoding="UTF-8",
-        nencoding="UTF-8")
+        host=connection_settings['host'],
+        port=connection_settings['port'],
+        database=connection_settings['database'])
 
     # Autocommit after change
     conn.autocommit = True
@@ -26,7 +23,10 @@ def connect_to_server():
     print('[i] Connected successfully.')
     input('\nPress ENTER to continue.')
 
-    return conn.cursor()
+    global CONNECTION
+    CONNECTION = conn
+    CURSOR = CONNECTION.cursor()
+    return CURSOR
 
 
 if __name__ == "__main__":
@@ -51,7 +51,8 @@ if __name__ == "__main__":
                     host = settings['connection']['host']
                     port = settings['connection']['port']
                     user = settings['connection']['user']
-                    connected_to = f'\n [i] Connected to {host}:{port} as {user}'
+                    database = settings['connection']['database']
+                    connected_to = f'\n [i] Connected to {host}:{port}.`{database}` as {user}'
                 except:
                     print('\n[!] Connection failed.')
                     input('\nPress ENTER to continue.')
