@@ -6,7 +6,7 @@ from os.path import exists
 def init_config():
     config = ConfigParser()
     config.add_section('connection')
-    fields = ['host', 'port', 'sid', 'user', 'password']
+    fields = ['host', 'port', 'sid', 'user', 'password', 'database']
     for field in fields:
         config['connection'][field] = ''
     with open('config.ini', 'w+') as configfile:
