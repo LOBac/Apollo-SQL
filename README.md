@@ -2,15 +2,14 @@
 
 [![MIT license](https://img.shields.io/github/license/olegbrz/Apollo-SQL?color=teal)](https://lbesson.mit-license.org/) ![top language](https://img.shields.io/github/languages/top/olegbrz/Apollo-SQL) ![Code size](https://img.shields.io/github/languages/code-size/olegbrz/Apollo-SQL?color=green%20green) ![commit activity](https://img.shields.io/github/commit-activity/m/olegbrz/Apollo-SQL?color=green%20green) ![tag](https://img.shields.io/github/v/release/olegbrz/Apollo-SQL?include_prereleases) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3883946.svg)](https://doi.org/10.5281/zenodo.3883946)
 
-Apollo SQL is a lightweight Oracle database manager developed by a group of students from Málaga's University.
+LOBac SQL is a lightweight MySQL database manager developed by a group of students from Málaga's University, forked from Apollo SQL.
 
 This CLI program written in Python allows you to connect to remote database to query and relate data with predesigned queries (modify [`custom/queries.sql`](custom/queries.sql) and [`custom/db_data_.py`](custom/db_data_.py)), show whole tables, and insert data into them.
 
 ## Requirements
 
 - [Python 3](https://www.python.org/downloads/)
-- [cx-Oracle module](https://pypi.org/project/cx-Oracle/)
-- [Oracle Instant Client](https://www.oracle.com/database/technologies/instant-client.html)
+- [MySQL connector](https://dev.mysql.com/downloads/connector/python/)
 
 ## Installation
 
@@ -32,7 +31,7 @@ In the first start, you will need to setup in settings the following connection 
 
 - `host`
 - `port`
-- `sid`
+- `database`
 - `username`
 - `password`
 
@@ -47,10 +46,6 @@ Here are some examples from the interface (main menu, settings, and a query) run
 The program also allows to perform customized queries from the menu:
 
 ![demo1](images/demo1.png)
-
-Relate (1:1, 1:N and N:M relationships) and insert data functionalities:
-
-![demo2](images/demo2.png)
 
 ## External packages (included)
 
