@@ -3,8 +3,38 @@ from custom import db_data
 from datetime import datetime
 from extra.tabulate.tabulate import tabulate
 
+MYSQL_FIELDTYPES = {
+    0: 'DECIMAL',
+    1: 'TINY',
+    2: 'SHORT',
+    3: 'LONG',
+    4: 'FLOAT',
+    5: 'DOUBLE',
+    6: 'NULL',
+    7: 'TIMESTAMP',
+    8: 'LONGLONG',
+    9: 'INT24',
+    10: 'DATE',
+    11: 'TIME',
+    12: 'DATETIME',
+    13: 'YEAR',
+    14: 'NEWDATE',
+    15: 'VARCHAR',
+    16: 'BIT',
+    246: 'NEWDECIMAL',
+    247: 'INTERVAL',
+    248: 'SET',
+    249: 'TINY_BLOB',
+    250: 'MEDIUM_BLOB',
+    251: 'LONG_BLOB',
+    252: 'BLOB',
+    253: 'VAR_STRING',
+    254: 'STRING',
+    255: 'GEOMETRY'}
 
 # Get customized queries from queries.sql and queries.py files
+
+
 def get_queries():
     f = open('custom/queries.sql', encoding='utf-8')
     full_sql = f.read()
@@ -29,8 +59,8 @@ def get_tables(CURSOR):
 def get_columns_attr(CURSOR, tablename):
     query = f'''
     SELECT * from {tablename}'''
-    response = CURSOR.execute(query)
-    return response.description
+    CURSOR.execute(query)
+    return CURSOR.description
 
 
 # Get columns names in a list
@@ -104,7 +134,7 @@ def insert(CURSOR):
 
                 completed = False
                 required = bool(not column[6])
-                datatype = column[1].__name__
+                datatype = MYSQL_FIELDTYPES[column[1]]
 
                 if datatype == 'DATETIME':
                     date_format = " (Format dd/mm/yyyy) "
@@ -127,13 +157,6 @@ def insert(CURSOR):
                         input('\nPress ENTER to continue.')
                         continue
 
-                    # Checks if item lenght is valid
-                    elif len(user_input) > column[2]:
-                        print(
-                            f'\n(!) Error, {column[0]} maximum lenght is {column[2]}.')
-                        input('\nPress ENTER to continue.')
-                        continue
-
                     # Checks if item is number
                     elif datatype == 'NUMBER' and not is_number(user_input):
                         print(
@@ -150,7 +173,7 @@ def insert(CURSOR):
                     # If all ok...
                     else:
                         # If it's a string, add ''
-                        if datatype in ['STRING', 'FIXED_CHAR']:
+                        if datatype in ['STRING', 'FIXED_CHAR', 'TINY', 'VAR_STRING', 'LONG']:
                             user_input = "'" + user_input + "'"
 
                         # If it's a date, add TO_DATE clause
@@ -168,6 +191,7 @@ def insert(CURSOR):
 
             # Prepare insert statement with customized data
             insert_statement = f'''INSERT INTO {tables[selected]} ({columns}) VALUES ({values})'''
+            print(insert_statement)
 
             # Check if user is sure about the insert
             user_switch = input(
