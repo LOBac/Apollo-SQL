@@ -18,10 +18,10 @@ def get_queries():
 def get_tables(CURSOR):
     query = '''
     SELECT table_name
-    FROM user_tables
-    ORDER BY table_name'''
-    response = CURSOR.execute(query)
-    return [i[0] for i in response]
+    FROM information_schema.tables
+    WHERE table_schema = \'bacterium\''''
+    CURSOR.execute(query)
+    return [i[0] for i in CURSOR]
 
 
 # Get columns attributes in a list
@@ -41,11 +41,10 @@ def get_column_names(CURSOR, tablename):
 
 # Prints query result with tabulate
 def show_query(CURSOR, query):
-    response = CURSOR.execute(query)
-    data = list(response)
-    headers = [i[0] for i in response.description]
+    CURSOR.execute(query)
+    data = list(CURSOR)
+    headers = [i[0] for i in CURSOR.description]
     print(tabulate(data, headers=headers, tablefmt='fancy_grid'))
-
     return data
 
 
